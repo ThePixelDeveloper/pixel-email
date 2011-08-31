@@ -21,6 +21,11 @@ class Controller_Email extends Controller_Template
 	 */
 	public function before()
 	{
+		if (Kohana::DEVELOPMENT !== Kohana::$environment AND Kohana::TESTING !== Kohana::$environment)
+		{
+			throw new HTTP_Exception_404;
+		}
+		
 		parent::before();
 		
 		$this->template->set_global('email', $this->request->param('email'));
