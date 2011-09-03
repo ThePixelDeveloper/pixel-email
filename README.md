@@ -34,69 +34,69 @@ the database reporter so we can grab the emails out at a later date.
 Schema
 ------
 
-	CREATE TABLE IF NOT EXISTS `emails` (
-		`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-		`raw` mediumtext NOT NULL,
-		`body` mediumtext NOT NULL,
+	CREATE TABLE IF NOT EXISTS emails (
+		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+		raw mediumtext NOT NULL,
+		body mediumtext NOT NULL,
 		`subject` mediumtext NOT NULL,
 		`type` varchar(10) NOT NULL,
 		`date` int(10) unsigned NOT NULL,
-		`headers` longtext NOT NULL,
-		`sender` text,
-		`return_path` text,
-		PRIMARY KEY (`id`),
+		headers longtext NOT NULL,
+		sender text,
+		return_path text,
+		PRIMARY KEY (id),
 		KEY `date` (`date`)
+	) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+
+	CREATE TABLE IF NOT EXISTS pixel_email_bccs (
+		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+		email_id mediumint(8) unsigned NOT NULL,
+		email varchar(255) NOT NULL,
+		`name` varchar(255) DEFAULT NULL,
+		PRIMARY KEY (id),
+		KEY email (email,`name`),
+		KEY email_id (email_id)
 	) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-	CREATE TABLE IF NOT EXISTS `pixel_email_bccs` (
-		`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-		`email_id` mediumint(8) unsigned NOT NULL,
-		`email` varchar(255) NOT NULL,
-		`name` int(255) DEFAULT NULL,
-		PRIMARY KEY (`id`),
-		KEY `email` (`email`,`name`),
-		KEY `email_id` (`email_id`)
+	CREATE TABLE IF NOT EXISTS pixel_email_ccs (
+		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+		email_id mediumint(8) unsigned NOT NULL,
+		email varchar(255) NOT NULL,
+		`name` varchar(255) DEFAULT NULL,
+		PRIMARY KEY (id),
+		KEY email (email,`name`),
+		KEY email_id (email_id)
+	) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+
+	CREATE TABLE IF NOT EXISTS pixel_email_froms (
+		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+		email_id mediumint(8) unsigned NOT NULL,
+		email varchar(255) NOT NULL,
+		`name` varchar(255) DEFAULT NULL,
+		PRIMARY KEY (id),
+		KEY email (email,`name`),
+		KEY email_id (email_id)
+	) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+
+	CREATE TABLE IF NOT EXISTS pixel_email_reply_tos (
+		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+		email_id mediumint(8) unsigned NOT NULL,
+		email varchar(255) NOT NULL,
+		`name` varchar(255) DEFAULT NULL,
+		PRIMARY KEY (id),
+		KEY email (email,`name`),
+		KEY email_id (email_id)
 	) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-	CREATE TABLE IF NOT EXISTS `pixel_email_ccs` (
-		`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-		`email_id` mediumint(8) unsigned NOT NULL,
-		`email` varchar(255) NOT NULL,
-		`name` int(255) DEFAULT NULL,
-		PRIMARY KEY (`id`),
-		KEY `email` (`email`,`name`),
-		KEY `email_id` (`email_id`)
-	) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-	CREATE TABLE IF NOT EXISTS `pixel_email_froms` (
-		`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-		`email_id` mediumint(8) unsigned NOT NULL,
-		`email` varchar(255) NOT NULL,
-		`name` int(255) DEFAULT NULL,
-		PRIMARY KEY (`id`),
-		KEY `email` (`email`,`name`),
-		KEY `email_id` (`email_id`)
-	) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-	CREATE TABLE IF NOT EXISTS `pixel_email_reply_tos` (
-		`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-		`email_id` mediumint(8) unsigned NOT NULL,
-		`email` varchar(255) NOT NULL,
-		`name` int(255) DEFAULT NULL,
-		PRIMARY KEY (`id`),
-		KEY `email` (`email`,`name`),
-		KEY `email_id` (`email_id`)
-	) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-	CREATE TABLE IF NOT EXISTS `pixel_email_tos` (
-		`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-		`email_id` mediumint(8) unsigned NOT NULL,
-		`email` varchar(255) NOT NULL,
-		`name` int(255) DEFAULT NULL,
-		PRIMARY KEY (`id`),
-		KEY `email` (`email`,`name`),
-		KEY `email_id` (`email_id`)
-	) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+	CREATE TABLE IF NOT EXISTS pixel_email_tos (
+		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+		email_id mediumint(8) unsigned NOT NULL,
+		email varchar(255) NOT NULL,
+		`name` varchar(255) DEFAULT NULL,
+		PRIMARY KEY (id),
+		KEY email (email,`name`),
+		KEY email_id (email_id)
+	) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 License
 -------
