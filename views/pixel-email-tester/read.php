@@ -1,22 +1,76 @@
 <h1>Inbox for <a href="<?php print Route::url('email-inbox', array('email' => $email)); ?>"><?php print $email; ?></a></h1>
-<h2><?php print $result->subject; ?></h2>
-<table lass="zebra-striped">
-	<thead>
+
+<table>
 	<tr>
-		<th>Address (To)</th>
-		<th>Result</th>
-		<th>Content-Type</th>
-		<th>Date</th>
+		<th>Subject</th>
+		<td><?php print $result->subject; ?></td>
 	</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><?php print $result->address; ?></td>
-			<td><?php print $result->result; ?></td>
-			<td><?php print $result->type; ?></td>
-			<td><?php print date(DATE_RFC3339, $result->date); ?></td>
-		</tr>
-	</tbody>
+	<tr>
+		<th>Date received</th>
+		<td><?php print date(DATE_RSS, $result->date); ?></td>
+	</tr>
+	<tr>
+		<th>Content Type</th>
+		<td><?php print $result->type; ?></td>
+	</tr>
+	<tr>
+		<th>Sender</th>
+		<td><?php print $result->sender; ?></td>
+	</tr>
+	<tr>
+		<th>Return Path</th>
+		<td><?php print $result->return_path; ?></td>
+	</tr>
+	<tr>
+		<th>To</th>
+		<td>
+			<ul style="margin-bottom:0;">
+				<?php foreach($result->tos->find_all() as $to): ?>
+				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
+				<?php endforeach; ?>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th>From</th>
+		<td>
+			<ul style="margin-bottom:0;">
+				<?php foreach($result->froms->find_all() as $to): ?>
+				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
+				<?php endforeach; ?>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th>Cc</th>
+		<td>
+			<ul style="margin-bottom:0;">
+				<?php foreach($result->ccs->find_all() as $to): ?>
+				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
+				<?php endforeach; ?>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th>Bcc</th>
+		<td>
+			<ul style="margin-bottom:0;">
+				<?php foreach($result->bccs->find_all() as $to): ?>
+				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
+				<?php endforeach; ?>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th>Reply To</th>
+		<td>
+			<ul style="margin-bottom:0;">
+				<?php foreach($result->reply_tos->find_all() as $to): ?>
+				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
+				<?php endforeach; ?>
+			</ul>
+		</td>
+	</tr>
 </table>
 
 <h2><a href="<?php print Route::url('email-read', array('email' => $email, 'id' => $result->id, 'part' => 'body'), $request); ?>">Body</a></h2>

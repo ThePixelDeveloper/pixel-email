@@ -39,9 +39,8 @@ class Controller_Email extends Controller_Template
 	{
 		$this->template->content = View::factory('pixel-email-tester/list');
 		
-		$this->template->content->results = ORM::factory('email')
-						->select(DB::expr('COUNT(*) AS email_count'))
-						->group_by('address')
+		$this->template->content->results = ORM::factory('pixel_email_to')
+						->group_by('email')
 						->find_all();
 		
 		$this->template->title = __('Email Inboxes');
@@ -60,7 +59,7 @@ class Controller_Email extends Controller_Template
 		
 		$this->template->title = __('Inbox').' - '.$email;
 		
-		$this->template->content->results = ORM::factory('email')->where('address', '=', $email)->order_by('date', 'desc')->find_all();
+		$this->template->content->results = ORM::factory('pixel_email_to')->where('email', '=', $email)->find_all();
 	}
 	
 	/**
@@ -84,6 +83,6 @@ class Controller_Email extends Controller_Template
 		
 		$this->template->content->result = $email;
 		
-		$this->template->title = __($email->subject).' - '.$email->address;
+		$this->template->title = __($email->subject).' - '.implode(', ', $email->tos->find_all()->as_array(NULL, 'email'));
 	}
 }
