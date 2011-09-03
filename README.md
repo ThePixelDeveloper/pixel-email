@@ -49,7 +49,7 @@ details of that message. Details include:
 
 The complete raw email can be found by appending /raw when viewing a message. So
 
-`<domain.com>/emails/me@example.com/1` -> `<domain.com>/me@example.com/1/raw`
+`<domain.com>/emails/me@example.com/1` -> `<domain.com>/emails/me@example.com/1/raw`
 
 Schema
 ------
