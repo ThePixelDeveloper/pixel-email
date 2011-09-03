@@ -28,8 +28,28 @@ Where you connect to your email service you'd have something similar to this:
 		$mailer = Swift_SendmailTransport::newInstance();
 	}
 
-The NullTransport is used because we don't want to send the email and then we attach
-the database reporter so we can grab the emails out at a later date.
+The NullTransport is used because we don't want to send the email; We then attach
+the database reporter so we can grab the emails out at a later date. All you need
+to do to view the emails is browse to <domain.com>/emails. The main page will
+show you a list of emails which have appeared in the "To" header. Clicking an email
+will show you its inbox and further clicking on the subject will give you all the
+details of that message. Details include:
+
+* Subject
+* Date Received
+* Content-Type
+* Sender
+* Return-Path
+* To
+* From
+* Cc
+* Bcc
+* Reply-To
+* Message body
+
+The complete raw email can be found by appending /raw when viewing a message. So
+
+`<domain.com>/emails/me@example.com/1` -> `<domain.com>/me@example.com/1/raw`
 
 Schema
 ------
