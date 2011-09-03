@@ -7,14 +7,14 @@
  * @package Swift
  * @subpackage Plugins
  */
-class Swift_Plugins_Reporters_DatabaseReporter implements Swift_Plugins_Reporter
+class Swift_Plugins_Pixel_Email_Logger_Database implements Swift_Plugins_Reporter
 {
 	/**
 	 * Kohana model instance
 	 * 
 	 * @var Model
 	 */
-  private $_model = NULL;
+	protected $_model = NULL;
 
 	/**
 	 * 
@@ -24,7 +24,7 @@ class Swift_Plugins_Reporters_DatabaseReporter implements Swift_Plugins_Reporter
 	{
 		$this->_model = $model;
 	}
-	
+
 	/**
 	 * Get the kohana model instance.
 	 * 
@@ -34,19 +34,17 @@ class Swift_Plugins_Reporters_DatabaseReporter implements Swift_Plugins_Reporter
 	{
 		return $this->_model;
 	}
-	
-  /**
-   * Notifies this ReportNotifier that $address failed or succeeded.
+
+	/**
+	 * Logs the message and it's properties to the database.
 	 * 
-   * @param Swift_Mime_Message $message
-   * @param string $address
-   * @param int $result from {@link RESULT_PASS, RESULT_FAIL}
-   */
-  public function notify(Swift_Mime_Message $message, $address, $result)
-  {
-		// Cast result to bool
-		$result = self::RESULT_PASS === $result;
-		$this->_model->insert_email($message, $address, $result);
-  }
-  
+	 * @param Swift_Mime_Message $message
+	 * @param string $address
+	 * @param int $result from {@link RESULT_PASS, RESULT_FAIL}
+	 */
+	public function notify(Swift_Mime_Message $message, $address, $result)
+	{
+		$this->_model->insert_email($message);
+	}
+
 }

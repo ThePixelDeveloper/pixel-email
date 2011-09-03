@@ -13,8 +13,6 @@ interface Model_Email_Interface
 	 * Insert the email from swiftmailer into the database.
 	 * 
 	 * @param Swift_Mime_Message $message
-	 * @param string             $address
-	 * @param boolean            $result
 	 */
-	public function insert_email(Swift_Mime_Message $message, $address, $result);
+	public function insert_email(Swift_Mime_Message $message);
 }
