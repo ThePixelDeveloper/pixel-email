@@ -3,19 +3,19 @@
 <table>
 	<tr>
 		<th>Subject</th>
-		<td><?php print $result->subject; ?></td>
+		<td id="subject"><?php print $result->subject; ?></td>
 	</tr>
 	<tr>
 		<th>Date received</th>
-		<td><?php print date(DATE_RSS, $result->date); ?></td>
+		<td id="date"><?php print date(DATE_RSS, $result->date); ?></td>
 	</tr>
 	<tr>
 		<th>Content Type</th>
-		<td><?php print $result->type; ?></td>
+		<td id="type"><?php print $result->type; ?></td>
 	</tr>
 	<tr>
 		<th>Sender</th>
-		<td><?php print $result->sender; ?></td>
+		<td id="sender"><?php print $result->sender; ?></td>
 	</tr>
 	<tr>
 		<th>Return Path</th>
@@ -24,7 +24,7 @@
 	<tr>
 		<th>To</th>
 		<td>
-			<ul style="margin-bottom:0;">
+			<ul style="margin-bottom:0;" id="to">
 				<?php foreach($result->tos->find_all() as $to): ?>
 				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
 				<?php endforeach; ?>
@@ -34,7 +34,7 @@
 	<tr>
 		<th>From</th>
 		<td>
-			<ul style="margin-bottom:0;">
+			<ul style="margin-bottom:0;" id="from">
 				<?php foreach($result->froms->find_all() as $to): ?>
 				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
 				<?php endforeach; ?>
@@ -44,7 +44,7 @@
 	<tr>
 		<th>Cc</th>
 		<td>
-			<ul style="margin-bottom:0;">
+			<ul style="margin-bottom:0;" id="cc">
 				<?php foreach($result->ccs->find_all() as $to): ?>
 				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
 				<?php endforeach; ?>
@@ -54,7 +54,7 @@
 	<tr>
 		<th>Bcc</th>
 		<td>
-			<ul style="margin-bottom:0;">
+			<ul style="margin-bottom:0;" id="bcc">
 				<?php foreach($result->bccs->find_all() as $to): ?>
 				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
 				<?php endforeach; ?>
@@ -64,7 +64,7 @@
 	<tr>
 		<th>Reply To</th>
 		<td>
-			<ul style="margin-bottom:0;">
+			<ul style="margin-bottom:0;" id="reply">
 				<?php foreach($result->reply_tos->find_all() as $to): ?>
 				<li><?php print $to->name; ?> &lt;<?php print $to->email; ?>&gt;</li>
 				<?php endforeach; ?>
