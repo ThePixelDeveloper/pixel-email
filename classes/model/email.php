@@ -9,6 +9,15 @@
  */
 class Model_Email extends ORM implements Model_Email_Interface
 {
+	protected $_has_many = array
+	(
+		'tos'       => array('model' => 'pixel_email_to'),
+		'froms'     => array('model' => 'pixel_email_from'),
+		'ccs'       => array('model' => 'pixel_email_cc'),
+		'bccs'      => array('model' => 'pixel_email_bcc'),
+		'reply_tos' => array('model' => 'pixel_email_reply_to'),
+	);
+	
 	/**
 	 * Insert the email from swiftmailer into the database.
 	 * 
@@ -45,7 +54,7 @@ class Model_Email extends ORM implements Model_Email_Interface
 		));
 
 		$this->save();
-
+		
 		$this->addTo($this,      $message->getTo());
 		$this->addFrom($this,    $message->getFrom());
 		$this->addCc($this,      $message->getCc());
