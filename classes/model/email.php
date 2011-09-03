@@ -22,6 +22,7 @@ class Model_Email extends ORM implements Model_Email_Interface
 		$this->values(array
 		(
 			'raw'     => $message,
+			'headers' => serialize($message->getHeaders()),
 			'body'    => $message->getBody(),
 			'subject' => $message->getSubject(),
 			'type'    => $message->getContentType(),

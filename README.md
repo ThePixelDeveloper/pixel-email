@@ -43,6 +43,7 @@ Schema
 		`subject` mediumtext NOT NULL,
 		`type` varchar(64) NOT NULL,
 		`date` text NOT NULL,
+		`headers` longtext NOT NULL,
 		PRIMARY KEY (`id`)
 	) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
