@@ -18,7 +18,7 @@ Where you connect to your email service you'd have something similar to this:
 		$model = ORM::factory('email');
 				
 		// Create a new database reporter.
-		$database_reporter = new Swift_Plugins_Reporters_DatabaseReporter($model);
+		$database_reporter = new Swift_Plugins_Pixel_Email_Logger_Database($model);
 		$reporter          = new Swift_Plugins_ReporterPlugin($database_reporter);
 				
 		$mailer->registerPlugin($reporter);
