@@ -19,7 +19,7 @@
 	</tr>
 	<tr>
 		<th>Return Path</th>
-		<td><?php print $result->return_path; ?></td>
+		<td id="return_path"><?php print $result->return_path; ?></td>
 	</tr>
 	<tr>
 		<th>To</th>
