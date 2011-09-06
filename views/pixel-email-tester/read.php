@@ -80,5 +80,4 @@
 				width="940px" 
 				height="400px"
 				style="border:1px solid #ddd">
-<?php print $result->body; ?>
 </iframe>
