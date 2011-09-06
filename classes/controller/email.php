@@ -59,7 +59,17 @@ class Controller_Email extends Controller_Template
 		
 		$this->template->title = __('Inbox').' - '.$email;
 		
-		$this->template->content->results = ORM::factory('pixel_email_to')->where('email', '=', $email)->find_all();
+		$this->template->content->results = DB::query(Database::SELECT, '
+			SELECT emails.* 
+			FROM pixel_email_tos 
+			JOIN emails 
+				ON pixel_email_tos.email_id = emails.id 
+			WHERE pixel_email_tos.email = :email 
+			ORDER BY emails.date DESC
+		')
+			->param(':email', $email)
+			->as_object()
+			->execute();
 	}
 	
 	/**
