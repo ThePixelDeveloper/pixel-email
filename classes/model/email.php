@@ -49,7 +49,7 @@ class Model_Email extends ORM implements Model_Email_Interface
 			'subject'     => $message->getSubject(),
 			'type'        => $message->getContentType(),
 			'date'        => $message->getDate(),
-			'sender'      => key($message->getSender()),
+			'sender'      => ($message->getSender() !== NULL) ? key($message->getSender()) : '',
 			'return_path' => $message->getReturnPath(),
 		));
 
