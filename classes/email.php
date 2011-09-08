@@ -69,7 +69,7 @@ class Email
 			 */
 			$transport = Swift_MailTransport::newInstance($config['options']);
 		}
-		
+				
 		if (isset($config['logging']) AND $config['logging'])
 		{
 			/**
@@ -83,6 +83,6 @@ class Email
 			$transport->registerPlugin($reporter);
 		}
 		
-		return $transport;
+		return Swift_Mailer::newInstance($transport);
 	}
 } // End email
