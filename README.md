@@ -54,7 +54,7 @@ The complete raw email can be found by appending /raw when viewing a message. So
 Schema
 ------
 
-	CREATE TABLE IF NOT EXISTS emails (
+	CREATE TABLE emails (
 		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
 		raw mediumtext NOT NULL,
 		body mediumtext NOT NULL,
@@ -68,7 +68,7 @@ Schema
 		KEY `date` (`date`)
 	) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
-	CREATE TABLE IF NOT EXISTS pixel_email_bccs (
+	CREATE TABLE pixel_email_bccs (
 		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
 		email_id mediumint(8) unsigned NOT NULL,
 		email varchar(255) NOT NULL,
@@ -78,27 +78,7 @@ Schema
 		KEY email_id (email_id)
 	) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-	CREATE TABLE IF NOT EXISTS pixel_email_ccs (
-		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-		email_id mediumint(8) unsigned NOT NULL,
-		email varchar(255) NOT NULL,
-		`name` varchar(255) DEFAULT NULL,
-		PRIMARY KEY (id),
-		KEY email (email,`name`),
-		KEY email_id (email_id)
-	) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
-	CREATE TABLE IF NOT EXISTS pixel_email_froms (
-		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-		email_id mediumint(8) unsigned NOT NULL,
-		email varchar(255) NOT NULL,
-		`name` varchar(255) DEFAULT NULL,
-		PRIMARY KEY (id),
-		KEY email (email,`name`),
-		KEY email_id (email_id)
-	) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
-	CREATE TABLE IF NOT EXISTS pixel_email_reply_tos (
+	CREATE TABLE pixel_email_ccs (
 		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
 		email_id mediumint(8) unsigned NOT NULL,
 		email varchar(255) NOT NULL,
@@ -108,7 +88,27 @@ Schema
 		KEY email_id (email_id)
 	) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-	CREATE TABLE IF NOT EXISTS pixel_email_tos (
+	CREATE TABLE pixel_email_froms (
+		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+		email_id mediumint(8) unsigned NOT NULL,
+		email varchar(255) NOT NULL,
+		`name` varchar(255) DEFAULT NULL,
+		PRIMARY KEY (id),
+		KEY email (email,`name`),
+		KEY email_id (email_id)
+	) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+
+	CREATE TABLE pixel_email_reply_tos (
+		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+		email_id mediumint(8) unsigned NOT NULL,
+		email varchar(255) NOT NULL,
+		`name` varchar(255) DEFAULT NULL,
+		PRIMARY KEY (id),
+		KEY email (email,`name`),
+		KEY email_id (email_id)
+	) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+	CREATE TABLE pixel_email_tos (
 		id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
 		email_id mediumint(8) unsigned NOT NULL,
 		email varchar(255) NOT NULL,
