@@ -1,6 +1,6 @@
 <h1>Inboxes</h1>
 
-<table class="zebra-striped">
+<table class="table table-striped table-bordered table-condensed">
 	<thead>
 	<tr>
 		<th>Address</th>

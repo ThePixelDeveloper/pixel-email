@@ -1,6 +1,6 @@
 <h1>Inbox for <a href="<?php print Route::url('email-inbox', array('email' => $email)); ?>"><?php print $email; ?></a></h1>
 
-<table>
+<table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Subject</th>
 		<td id="subject"><?php print $result->subject; ?></td>

@@ -1,6 +1,6 @@
 <h1><a href="<?php print Route::url('email'); ?>">Inbox</a> for <?php print $email; ?></h1>
 
-<table class="zebra-striped">
+<table class="table table-striped table-bordered table-condensed">
 	<thead>
 	<tr>
 		<th>Subject</th>
