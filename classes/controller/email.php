@@ -95,4 +95,15 @@ class Controller_Email extends Controller_Template
 		
 		$this->template->title = __($email->subject).' - '.implode(', ', $email->tos->find_all()->as_array(NULL, 'email'));
 	}
+
+	public function action_css()
+	{
+		$this->auto_render = FALSE;
+
+		$css = Kohana::find_file('css/pixel-email', $this->request->param('file'), 'css');
+
+		$this->response->body(file_get_contents($css));
+		$this->response->headers('Content-Type', 'text/css');
+	}
+
 }
