@@ -17,3 +17,9 @@ Route::set('email-read', 'emails/<email>(/<id>(/<part>))', array('email' => '[^/
 		'controller' => 'email',
 		'action'     => 'read'
 	));
+
+Route::set('email-css', 'emails/css/<file>', array('file' => '.*'))
+	->defaults(array(
+		'controller' => 'email',
+		'action'     => 'css'
+	));
