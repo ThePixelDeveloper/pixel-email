@@ -69,20 +69,7 @@ class Email
 			 */
 			$transport = Swift_MailTransport::newInstance($config['options']);
 		}
-				
-		if (isset($config['logging']) AND $config['logging'])
-		{
-			/**
-			 * Logs all outgoing email to the database. 
-			 */
-			$model = ORM::factory('email');
-			
-			$database_reporter = new Swift_Plugins_Pixel_Email_Logger_Database($model);
-			$reporter          = new Swift_Plugins_ReporterPlugin($database_reporter);
-				
-			$transport->registerPlugin($reporter);
-		}
-		
+
 		return Swift_Mailer::newInstance($transport);
 	}
 } // End email
